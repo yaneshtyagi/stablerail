@@ -1,0 +1,30 @@
+/* Only product-specific responsive composition; primitives belong to the design system. */
+.record-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-4);
+}
+.form-width {
+  max-width: var(--content-max);
+}
+.break-id {
+  overflow-wrap: anywhere;
+}
+.page-note {
+  color: var(--ink-secondary);
+}
+.section-space {
+  margin-block: var(--space-4);
+}
+@media (max-width: 1023px) {
+  .record-grid,
+  .dashboard-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
