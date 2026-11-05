@@ -1,8 +1,16 @@
 # StableRail product
 
-Modular control plane for slice 2. The sandbox in `../prototype` stays independent and is not imported as production authority.
+Modular control plane. The sandbox in `../prototype` stays independent and is not imported as production authority.
 
-Decisions are in [`docs/baseline`](../docs/baseline/README.md). This slice provides the solution, local dependencies, migrations, health, logging, request IDs, OpenTelemetry and the operations shell. It does not implement payment acceptance, provider calls, or financial tables. Those remain later slices. No production gate is passed.
+Decisions are in [`docs/baseline`](../docs/baseline/README.md). Slice 2 provides the solution, local dependencies, health, logging, request IDs and OpenTelemetry. Slice 3 adds the durable journal: tenants, merchants, credential verifiers, intents, options, attempts, routing decisions, provider accounts, chain observations, financial events, settlement and reconciliation records, compliance decisions, webhook events and deliveries, and audit events. Refund and payout workflows are not included. No production gate is passed.
+
+## Domain journal
+
+PostgreSQL is the authority. Money is a canonical minor-unit digit string plus a scale from 0 through 18, with a generated `numeric(38,0)` column for exact SQL aggregation. Quoted fiat is stored separately from the token obligation and is not added to it. Chain observations are unique on chain id, transaction hash and log index. One value recognition is allowed per observation. A provider notification for that observation links to the same financial event. A compensation inserts the opposite amount and leaves the original row in place.
+
+The migration creates the `stablerail_app` role without a login password. `./scripts/migrate.sh` sets the local development password `stablerail_app` on that role. The API connection in development uses this role. It can insert evidence and update projections. It cannot update or delete immutable evidence. Triggers also reject those changes for the database owner, reject forbidden acceptance jumps, and reject replacement of issued instructions. Production must set its own password for `stablerail_app`. The local password is rejected at production startup.
+
+Projection rows are a cache. `Journal.Rebuild` derives acceptance, recognized value, flags, compliance and settlement from retained rows and does not append financial events. Idempotency, outbox delivery, provider calls, chain ingestion and statement import remain later slices. The production registry of assets, contracts and policies stays empty.
 
 ## Runtime pins
 

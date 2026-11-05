@@ -8,6 +8,9 @@ public sealed class PlatformDbContextFactory : IDesignTimeDbContextFactory<Platf
     public const string LocalConnectionString =
         "Host=localhost;Port=54329;Database=stablerail;Username=stablerail;Password=stablerail";
 
+    public const string LocalApplicationConnectionString =
+        "Host=localhost;Port=54329;Database=stablerail;Username=stablerail_app;Password=stablerail_app";
+
     public PlatformDbContext CreateDbContext(string[] args)
     {
         var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__PostgreSql");

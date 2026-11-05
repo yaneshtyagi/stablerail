@@ -13,11 +13,8 @@ public sealed class DependencyTests
     [Fact]
     public async Task Migrations_create_module_schemas_and_ownership()
     {
-        var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__PostgreSql")
-            ?? PlatformDbContextFactory.LocalConnectionString;
-        var options = new DbContextOptionsBuilder<PlatformDbContext>().UsePlatformNpgsql(connectionString).Options;
-        await using var context = new PlatformDbContext(options);
-        await context.Database.MigrateAsync();
+        await TestDatabase.EnsureMigratedAsync();
+        await using var context = TestDatabase.Open(applicationRole: false);
         await context.Database.MigrateAsync();
 
         var schemas = await context.Database.SqlQueryRaw<string>("select schema_name as \"Value\" from information_schema.schemata")

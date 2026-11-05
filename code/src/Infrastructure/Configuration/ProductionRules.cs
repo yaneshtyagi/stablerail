@@ -83,7 +83,7 @@ public static class ProductionRules
         if (IsLocalHost(builder.Host) || builder.Port == RuntimePins.LocalPostgresPort)
             problems.Add("ConnectionStrings:PostgreSql must not use the local development host or port.");
 
-        if (string.IsNullOrWhiteSpace(builder.Password) || builder.Password is DurableQueue.LocalSecretKey or "stablerail")
+        if (string.IsNullOrWhiteSpace(builder.Password) || builder.Password is DurableQueue.LocalSecretKey or "stablerail" or "stablerail_app")
             problems.Add("ConnectionStrings:PostgreSql must not use the local development password.");
 
         return problems;

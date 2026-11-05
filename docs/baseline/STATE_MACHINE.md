@@ -168,3 +168,17 @@ Intent projections carry a version. A writer updates the projection only if the 
 Status transitions and exception, compliance, unknown-outcome and settlement changes enqueue logical events after the same transaction commits them to the outbox. Event names follow the PRD: `payment_intent.created`, `payment_detected`, `confirming`, `succeeded`, `expired`, `cancelled`, exception events, and `settlement.created`, `settlement.completed`, `settlement.failed`. Refund event names are P1 and are not emitted.
 
 A transition that is forbidden does not emit a success or cancellation event.
+
+## Slice 3 evaluation
+
+The stored acceptance status is the end of an allowed path. A writer does not assign an arbitrary status.
+
+When the first valid allocation already meets the threshold, the path may move from `requires_payment` to `confirming`, or to `succeeded` when finality and the other success gates are already true. The path stops on `detected` only while the recognized amount is still below the threshold.
+
+After success, the only backward edge is `succeeded` to `confirming`. If a compensation then leaves the recognized amount below the threshold, the next edge is `confirming` to `detected`. A single assignment from `succeeded` to `detected`, `requires_payment`, or `created` is rejected. The original financial event is not rewritten.
+
+`expired` and `cancelled` are recorded as decisions. Later funding updates the recognized amount and the late-transfer flag. It does not change those statuses, and it does not emit success.
+
+Issuance requires compliance `clear`, a committed attempt, and a stored routing decision. `blocked`, `held`, `unavailable`, and `not_evaluated` do not issue instructions. Loss of `clear` after success moves the projection along the allowed edge to `confirming`.
+
+Quoted fiat is stored beside the token obligation and is not added to it. Development tolerance remains zero until a merchant policy supplies another exact minor-unit value. That zero is an engineering default.
