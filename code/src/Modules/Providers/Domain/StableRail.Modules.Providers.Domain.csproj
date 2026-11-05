@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>StableRail.Modules.Providers.Domain</RootNamespace>
+    <AssemblyName>StableRail.Modules.Providers.Domain</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../BuildingBlocks/StableRail.BuildingBlocks.csproj" />
+  </ItemGroup>
+</Project>

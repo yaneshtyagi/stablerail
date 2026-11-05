@@ -1,0 +1,35 @@
+name: Product checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: code
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+      - run: ./scripts/dependencies.sh
+      - run: ./scripts/migrate.sh
+      - run: ./scripts/test-backend.sh
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: code
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: code/operations/.node-version
+          cache: pnpm
+          cache-dependency-path: code/operations/pnpm-lock.yaml
+      - run: ./scripts/test-frontend.sh

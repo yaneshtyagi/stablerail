@@ -1,0 +1,78 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Api/">
+    <Project Path="src/Api/StableRail.Api.csproj" />
+  </Folder>
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/StableRail.BuildingBlocks.csproj" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/">
+    <Project Path="src/Infrastructure/StableRail.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Compliance/" />
+  <Folder Name="/src/Modules/Compliance/Application/">
+    <Project Path="src/Modules/Compliance/Application/StableRail.Modules.Compliance.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Compliance/Domain/">
+    <Project Path="src/Modules/Compliance/Domain/StableRail.Modules.Compliance.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Finance/" />
+  <Folder Name="/src/Modules/Finance/Application/">
+    <Project Path="src/Modules/Finance/Application/StableRail.Modules.Finance.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Finance/Domain/">
+    <Project Path="src/Modules/Finance/Domain/StableRail.Modules.Finance.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Identity/" />
+  <Folder Name="/src/Modules/Identity/Application/">
+    <Project Path="src/Modules/Identity/Application/StableRail.Modules.Identity.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Identity/Domain/">
+    <Project Path="src/Modules/Identity/Domain/StableRail.Modules.Identity.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Monitoring/" />
+  <Folder Name="/src/Modules/Monitoring/Application/">
+    <Project Path="src/Modules/Monitoring/Application/StableRail.Modules.Monitoring.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Monitoring/Domain/">
+    <Project Path="src/Modules/Monitoring/Domain/StableRail.Modules.Monitoring.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Payments/" />
+  <Folder Name="/src/Modules/Payments/Application/">
+    <Project Path="src/Modules/Payments/Application/StableRail.Modules.Payments.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Payments/Domain/">
+    <Project Path="src/Modules/Payments/Domain/StableRail.Modules.Payments.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Providers/" />
+  <Folder Name="/src/Modules/Providers/Application/">
+    <Project Path="src/Modules/Providers/Application/StableRail.Modules.Providers.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Providers/Domain/">
+    <Project Path="src/Modules/Providers/Domain/StableRail.Modules.Providers.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Webhooks/" />
+  <Folder Name="/src/Modules/Webhooks/Application/">
+    <Project Path="src/Modules/Webhooks/Application/StableRail.Modules.Webhooks.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Webhooks/Domain/">
+    <Project Path="src/Modules/Webhooks/Domain/StableRail.Modules.Webhooks.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Worker/">
+    <Project Path="src/Worker/StableRail.Worker.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/Api.Tests/">
+    <Project Path="tests/Api.Tests/StableRail.Api.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Architecture.Tests/">
+    <Project Path="tests/Architecture.Tests/StableRail.Architecture.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Infrastructure.Tests/">
+    <Project Path="tests/Infrastructure.Tests/StableRail.Infrastructure.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Worker.Tests/">
+    <Project Path="tests/Worker.Tests/StableRail.Worker.Tests.csproj" />
+  </Folder>
+</Solution>

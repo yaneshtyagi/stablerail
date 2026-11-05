@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>StableRail.Modules.Finance.Application</RootNamespace>
+    <AssemblyName>StableRail.Modules.Finance.Application</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Domain/StableRail.Modules.Finance.Domain.csproj" />
+    <ProjectReference Include="../../../BuildingBlocks/StableRail.BuildingBlocks.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+</Project>

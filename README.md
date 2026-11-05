@@ -6,7 +6,8 @@ Repository layout:
 
 - `docs/` — product documentation, screenshots, generated guides and demo artifacts.
 - `prototype/` — the current prototype implementation, dependencies and tests.
-- `code/` — reserved for the actual product implementation; currently empty.
+- `code/` — product implementation. See [code/README.md](code/README.md). Decisions stay in [docs/baseline](docs/baseline/README.md).
+- `docs/baseline/` — requirement traceability, state machine, ADRs and external production gates.
 
 Run the prototype:
 
