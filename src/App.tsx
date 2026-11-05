@@ -62,6 +62,9 @@ import {
   type Scenario,
   type State,
 } from "./domain";
+import stableRailLogo from "./assets/stablerail-logo.svg";
+import stableRailLogoDark from "./assets/stablerail-logo-dark.svg";
+
 const STORAGE = "stablerail.sandbox.v3";
 const displayTime = (iso: string) =>
   formatDateTime(iso, {
@@ -137,7 +140,7 @@ export function App() {
     action: () => void;
   } | null>(null);
   const toast = useToast();
-  const { toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   useEffect(() => {
     const fn = () => {
       setPath(location.hash.slice(1) || "/overview");
@@ -1210,6 +1213,15 @@ export function App() {
     <AppShell
       sidebar={{
         productName: "StableRail",
+        logo: (
+          <img
+            className="stablerail-logo"
+            src={theme === "dark" ? stableRailLogoDark : stableRailLogo}
+            alt="StableRail"
+            width={160}
+            height={25}
+          />
+        ),
         product: "Gateway",
         version: "0.1",
         collapsedMark: "SR",

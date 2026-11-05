@@ -28,3 +28,12 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* The supplied wordmark keeps its aspect ratio within the shared shell. */
+.stablerail-logo {
+  display: block;
+  width: calc(var(--space-8) * 5);
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
