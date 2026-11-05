@@ -537,7 +537,7 @@ A **durable queue** retains work for processing and recovery. It can redeliver, 
 
 It demonstrates local transitions, scoped views and recovery behavior. Browser persistence is editable and is not a secure ledger, production authentication boundary or durable worker system. Reload tests do not replace provider contract tests, chain monitoring tests, concurrent request tests, disaster recovery or legal/provider launch approvals.
 
-The exact implementation contract and pending backend seams are documented in [API_CONTRACT.md](API_CONTRACT.md). The full journey and acceptance mapping are in [PROTOTYPE.md](../PROTOTYPE.md).
+The exact implementation contract and pending backend seams are documented in [API_CONTRACT.md](API_CONTRACT.md). The full journey and acceptance mapping are in [PROTOTYPE.md](PROTOTYPE.md).
 
 <!-- pagebreak -->
 
@@ -695,7 +695,7 @@ Discuss all ten questions with a teammate. An incorrect answer on duplicate exec
 ### Internal application references
 
 - [StableRail PRD](Stablecoin_Payment_Orchestration_Gateway_PRD.pdf): authoritative product requirements and phase boundaries.
-- [Prototype guide](../PROTOTYPE.md): executable journeys, simulator behavior and acceptance coverage.
+- [Prototype guide](PROTOTYPE.md): executable journeys, simulator behavior and acceptance coverage.
 - [API contract](API_CONTRACT.md): local mock operations and future server boundary.
 - `src/domain.ts`: current domain types and transition logic; implementation evidence, not a replacement for the PRD.
 

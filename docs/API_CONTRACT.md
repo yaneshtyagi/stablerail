@@ -19,7 +19,7 @@ The prototype calls local TypeScript operations, not HTTP endpoints. This contra
 
 ## Core typed records
 
-See exported interfaces in `src/domain.ts`: `Intent`, `Transfer`, `Provider`, `Route`, `HookEvent`, `Credential`, `Journal`, `CreateInput` and `State`.
+See exported interfaces in `prototype/src/domain.ts`: `Intent`, `Transfer`, `Provider`, `Route`, `HookEvent`, `Credential`, `Journal`, `CreateInput` and `State`.
 
 - Amounts are decimal **strings**, never binary floats; supported USDC precision is six places.
 - Datetimes are UTC ISO 8601 in state; the console displays labeled Asia/Kolkata times.

@@ -1,15 +1,16 @@
 # StableRail payment operations prototype
 
-An executable React + TypeScript operations console derived from `docs/Stablecoin_Payment_Orchestration_Gateway_PRD.pdf` (v1.0, 26 October 2026). Built with `@yaneshtyagi/design-system@1.1.0` and the supplied prd-to-prototype workflow. Development and validation use the local workspace, as explicitly authorized after checking cloud availability.
+An executable React + TypeScript operations console derived from `Stablecoin_Payment_Orchestration_Gateway_PRD.pdf` (v1.0, 26 October 2026). Built with `@yaneshtyagi/design-system@1.1.0` and the supplied prd-to-prototype workflow. Development and validation use the local workspace, as explicitly authorized after checking cloud availability.
 
 ## Run and validate
 
 Requires Node.js 22.12+ and pnpm 10.20.0.
 
 ```sh
+cd prototype
 pnpm install --frozen-lockfile
 pnpm dev
-# Open http://localhost:5173
+# Open http://localhost:5180
 pnpm build       # strict TypeScript check and production Vite bundle
 pnpm lint
 pnpm test        # domain safety and statement matching tests
@@ -23,7 +24,7 @@ pnpm exec playwright install chromium
 PLAYWRIGHT_CHANNEL=chromium pnpm test:e2e
 ```
 
-Browser tests use isolated contexts and a dedicated local server, or reuse port 5173 when already available. GitHub Actions runs build, lint, unit tests and browser journeys. Screenshots are captured in `docs/screenshots/`. Failed browser tests retain traces in `test-results/`.
+Browser tests use isolated contexts and a dedicated local server, or reuse port 5180 when already available. GitHub Actions runs build, lint, unit tests and browser journeys. Screenshots are captured in `docs/screenshots/` (from the repository root). Failed browser tests retain traces in `test-results/`.
 
 State persists under `stablerail.sandbox.v3` in browser localStorage. To reset only this prototype, remove that key in browser developer tools, then reload. Reloading preserves intents, idempotency keys, provider settings, statement references, webhook attempts and audit events. The sandbox clock does not automatically advance expiry or retry jobs; use explicit simulator actions.
 
@@ -173,7 +174,7 @@ ThemeProvider > ToastProvider > AppRoot
 
 `src/domain.ts` contains typed entities and pure state transitions. `src/App.tsx` composes the screen components and routes. `src/main.tsx` establishes the required provider order. `src/styles.css` contains only responsive product compositions and token-based utility adjustments. Every core primitive comes from the package root; fonts and styles load once. StatusBadge uses the fixed design system vocabulary, with exact PRD lifecycle labels shown alongside payment badges.
 
-State management uses React state, immutable transitions and versioned localStorage. Monetary values remain decimal strings and arithmetic uses bigint base units; numeric chart conversion is presentation-only. Requests, quotes, deposit addresses, provider health, signatures and compliance responses are simulated. See `docs/API_CONTRACT.md` for the mock boundary and production interface mapping.
+State management uses React state, immutable transitions and versioned localStorage. Monetary values remain decimal strings and arithmetic uses bigint base units; numeric chart conversion is presentation-only. Requests, quotes, deposit addresses, provider health, signatures and compliance responses are simulated. See `API_CONTRACT.md` for the mock boundary and production interface mapping.
 
 ## Scope and trade-offs
 
@@ -205,4 +206,4 @@ This implements the controlled POC in PRD §22: one primary merchant, **USDC on 
 | AT-013          | Serialized reload preserves duplicate-event behavior                        | Actual worker-crash/queue testing pending           |
 | AT-014          | Historical route snapshot and version survive provider changes              | Browser-editable audit storage                      |
 
-Automated browser coverage additionally checks all console routes in both themes, tenant switching, list recovery, mobile overflow, keyboard dismissal and dialog focus restoration. Static preview images are included in `docs/screenshots/`.
+Automated browser coverage additionally checks all console routes in both themes, tenant switching, list recovery, mobile overflow, keyboard dismissal and dialog focus restoration. Static preview images are included in `docs/screenshots/` (from the repository root).

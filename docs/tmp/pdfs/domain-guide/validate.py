@@ -3,8 +3,8 @@ import re,json
 from pypdf import PdfReader
 import pdfplumber,pypdfium2 as pdfium
 from PIL import Image,ImageDraw
-root=Path.cwd();pdf=root/'output/pdf/StableRail_Domain_Guide.pdf';reader=PdfReader(pdf)
-source=(root/'docs/DOMAIN_GUIDE.md').read_text()
+root=Path(__file__).resolve().parents[3];pdf=root/'output/pdf/StableRail_Domain_Guide.pdf';reader=PdfReader(pdf)
+source=(root/'DOMAIN_GUIDE.md').read_text()
 assert len(reader.pages)==25, f'Expected 25 pages, found {len(reader.pages)}'
 texts=[p.extract_text() for p in reader.pages];text='\n'.join(texts)
 for expected in ['249.20','93.75%','CASE-1042','STMT-002','12 / 64','Answer key and reasoning','Glossary: A-M','Glossary: N-Z']:
