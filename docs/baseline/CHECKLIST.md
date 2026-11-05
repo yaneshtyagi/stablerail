@@ -5,7 +5,7 @@ Slices run in this order. Later slices follow `docs/baseline` and must not reope
 | Slice | Status | Work | Acceptance |
 | --- | --- | --- | --- |
 | 1 | Done in this baseline | Scope, state machine, ADRs, dependency register, this checklist, traceability matrix | Every P0 row and AT-001–AT-014 has a slice. Transitions are explicit. External inputs name a production effect |
-| 2 | Not started | `code/` solution, workers, React app, PostgreSQL, Redis, queue, migrations, health, OpenTelemetry, CI | Fresh checkout starts dependencies and passes checks. Production startup rejects missing critical configuration and development authentication |
+| 2 | Scaffolded in `code/` | `code/` solution, workers, React app, PostgreSQL, Redis, queue, migrations, health, OpenTelemetry, CI | Fresh checkout starts dependencies and runs the checks in `code/README.md`. Production startup rejects missing critical configuration and development authentication |
 | 3 | Not started | §8 entities, money types, state machine, append-only journal, database roles | Integration tests cover forbidden transitions, precision, concurrency, duplicate recognition and compensating corrections |
 | 4 | Not started | Tenants, merchants, sessions, MFA, credentials, allowlists, limits, isolation, audit | AT-011 across API, workers, cache and exports. Revoked and wrong-environment keys fail. Privileged actions require MFA |
 | 5 | Not started | Idempotency, outbox, inbox, retries, dead letters, attempt protocol | AT-001 and AT-002 under concurrency and restart. Fault injection does not lose committed events or double-post money. AT-013 foundations |
@@ -28,6 +28,10 @@ Slices run in this order. Later slices follow `docs/baseline` and must not reope
 ## Explicitly later
 
 Do not fold these into slices 1–20: refunds and payouts, fiat off-ramp and executable quotes, cost-optimized routing, SDKs and hosted checkout, pricing configuration, enterprise SSO, predictive ranking, multi-leg or cross-chain orchestration, treasury optimization, and white-label packaging.
+
+## Slice 2 commands
+
+`code/README.md` records the dependency, migration, API, worker, UI and CI commands. The durable queue is Amazon SQS with the ElasticMQ emulator. Production gates in the dependency register stay open.
 
 ## Slice 1 verification
 

@@ -1,0 +1,25 @@
+.stablerail-logo {
+  display: block;
+  width: calc(var(--space-8) * 5);
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.section-space {
+  margin-block: var(--space-4);
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.stack td {
+  white-space: normal;
+}
+
+.stack td:nth-child(1),
+.stack td:nth-child(2) {
+  white-space: nowrap;
+}

@@ -6,3 +6,7 @@ test-results/
 .env*
 .DS_Store
 output/
+**/bin/
+**/obj/
+**/TestResults/
+.vite/

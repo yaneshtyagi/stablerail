@@ -600,9 +600,9 @@ These rows track PRD §6.10. The prototype already renders the corresponding scr
 - **Priority:** P0
 - **Requirement:** Correlate intent, route, provider, chain and reconciliation events.
 - **Prototype evidence:** Detail timeline and cross-links in the sandbox UI.
-- **Production gap:** No trace context or shared correlation ID.
+- **Production gap:** Alert delivery is still slice 18. Slice 2 records the trace context only.
 - **Slice:** 2; alerts in 18
-- **Verification evidence:** Pending. Trace propagation test in slice 2.
+- **Verification evidence:** `Correlation_spans_share_the_incoming_trace_and_request` correlates request, intent, route, provider, chain and reconciliation on one trace. Alert delivery remains slice 18.
 
 ### NFR-011
 

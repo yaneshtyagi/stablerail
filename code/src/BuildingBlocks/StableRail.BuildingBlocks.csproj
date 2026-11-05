@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>StableRail.BuildingBlocks</RootNamespace>
+    <AssemblyName>StableRail.BuildingBlocks</AssemblyName>
+  </PropertyGroup>
+</Project>

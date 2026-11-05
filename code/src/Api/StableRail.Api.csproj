@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>StableRail.Api</RootNamespace>
+    <AssemblyName>StableRail.Api</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\StableRail.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

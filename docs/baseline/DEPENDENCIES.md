@@ -22,7 +22,7 @@ No row in this register is satisfied.
 | RPC and chain trust | Approved endpoint URLs, chain ID authentication and failover endpoints | No production RPC URLs. Tests inject a fake chain source | Ingestion of real networks is disabled |
 | Webhook signing secrets | Algorithm confirmation and a secret-management procedure | Slice 12 specifies the algorithm and tests it with generated test secrets. Production secrets are not in source | Endpoints can be stored; delivery to real merchants waits for secret provisioning |
 | Identity host | Confirmation that operator login may be local ASP.NET Core Identity rather than a customer IdP | Local accounts with TOTP MFA. Development authentication bypass exists only in Development and is rejected at production startup | Enterprise federation is not offered. TEN-006 remains P2 |
-| Durable queue product | Slice 2 confirmation of the local emulator and the AWS queue settings | Amazon SQS, with a local SQS-compatible emulator. Outbox remains the authority | Not a capacity or disaster-recovery approval. Slice 18 measures outages |
+| Durable queue product | Measured capacity, outage behavior and production provisioning. Slice 2 recorded the product and names only | Amazon SQS standard queue `stablerail-control-plane`, dead letter `stablerail-control-plane-dlq`, region `us-east-1`. Local emulator ElasticMQ `softwaremill/elasticmq-native:1.7.1`. Outbox remains the authority | Not a capacity or disaster-recovery approval. Slice 17 provisions the queue. Slice 18 measures outages |
 | Restore objectives | Executed backup, restore and region-failure drill against RPO 15 minutes and RTO 4 hours | Settings are documented in slice 17 as targets, not as measured results | PRD §21 restore gate stays open |
 
 ## Development role set
@@ -47,11 +47,11 @@ These are selected so later slices do not invent them again. External gates abov
 
 | Setting | Selection | Source |
 | --- | --- | --- |
-| Runtime | .NET 10 LTS, `net10.0` | Microsoft support policy, read 5 November 2026. Support through 14 November 2028 |
-| Database | PostgreSQL 18 | PostgreSQL versioning policy. Support through 14 November 2030 |
-| UI toolchain | Node.js 26 LTS | Node.js 26 release line. Installed Node.js 25 is end of life and is not the product toolchain |
-| Cache | Redis, non-authoritative | PRD §9. Major pin in slice 2 |
-| Queue | SQS plus outbox | ADR-005 |
+| Runtime | .NET 10 LTS, `net10.0`, SDK 10.0.301 or a later 10.0 SDK | Microsoft support policy, read 5 November 2026. Support through 14 November 2028 |
+| Database | PostgreSQL 18.6 image `postgres:18.6` | PostgreSQL versioning policy. Support through 14 November 2030. Slice 2 pins the current minor |
+| UI toolchain | Node.js 26.13.0 LTS | Node.js 26 release line. Installed Node.js 25 is end of life and is not the product toolchain |
+| Cache | Redis 8.10.3, non-authoritative | PRD §9. Image pin `redis:8.10.3` |
+| Queue | Amazon SQS standard queue plus the ElasticMQ 1.7.1 emulator. Outbox remains the authority | ADR-005. Names and settings are in `code/src/BuildingBlocks/Queue/DurableQueue.cs` |
 | Routing tie-break | Merchant priority, then provider priority, then provider ID, all ascending | ADR-009 |
 | Money | Decimal strings on the API; integer minor units and an explicit scale in the database | ADR-004 and the state machine |
 | Idempotency retention | Same lifetime as the financial evidence | State machine |
