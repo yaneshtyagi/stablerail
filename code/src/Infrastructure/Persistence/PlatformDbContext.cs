@@ -1,5 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using StableRail.Infrastructure.Composition;
+using StableRail.Modules.Compliance.Domain;
+using StableRail.Modules.Finance.Domain;
+using StableRail.Modules.Identity.Domain;
+using StableRail.Modules.Monitoring.Domain;
+using StableRail.Modules.Payments.Domain;
+using StableRail.Modules.Providers.Domain;
+using StableRail.Modules.Webhooks.Domain;
 
 namespace StableRail.Infrastructure.Persistence;
 
@@ -9,6 +16,29 @@ public sealed class PlatformDbContext(DbContextOptions<PlatformDbContext> option
     public const string MigrationsHistoryTable = "__ef_migrations";
 
     public DbSet<ModuleOwnershipRecord> ModuleOwnership => Set<ModuleOwnershipRecord>();
+    public DbSet<Tenant> Tenants => Set<Tenant>();
+    public DbSet<Merchant> Merchants => Set<Merchant>();
+    public DbSet<Credential> Credentials => Set<Credential>();
+    public DbSet<MerchantPolicyVersion> MerchantPolicyVersions => Set<MerchantPolicyVersion>();
+    public DbSet<AuditEvent> AuditEvents => Set<AuditEvent>();
+    public DbSet<Provider> Providers => Set<Provider>();
+    public DbSet<ProviderAccount> ProviderAccounts => Set<ProviderAccount>();
+    public DbSet<RoutingPolicyVersion> RoutingPolicyVersions => Set<RoutingPolicyVersion>();
+    public DbSet<RoutingDecision> RoutingDecisions => Set<RoutingDecision>();
+    public DbSet<PaymentIntent> PaymentIntents => Set<PaymentIntent>();
+    public DbSet<PaymentOption> PaymentOptions => Set<PaymentOption>();
+    public DbSet<PaymentAttempt> PaymentAttempts => Set<PaymentAttempt>();
+    public DbSet<AcceptanceDecision> AcceptanceDecisions => Set<AcceptanceDecision>();
+    public DbSet<StatusEdge> StatusEdges => Set<StatusEdge>();
+    public DbSet<BlockchainObservation> BlockchainObservations => Set<BlockchainObservation>();
+    public DbSet<ObservationEvidence> ObservationEvidence => Set<ObservationEvidence>();
+    public DbSet<FinancialEvent> FinancialEvents => Set<FinancialEvent>();
+    public DbSet<EffectSource> EffectSources => Set<EffectSource>();
+    public DbSet<SettlementRecord> SettlementRecords => Set<SettlementRecord>();
+    public DbSet<ReconciliationRecord> ReconciliationRecords => Set<ReconciliationRecord>();
+    public DbSet<ComplianceDecision> ComplianceDecisions => Set<ComplianceDecision>();
+    public DbSet<WebhookEvent> WebhookEvents => Set<WebhookEvent>();
+    public DbSet<WebhookDelivery> WebhookDeliveries => Set<WebhookDelivery>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -28,5 +58,6 @@ public sealed class PlatformDbContext(DbContextOptions<PlatformDbContext> option
                 RecordedAt = ModuleCatalog.RecordedAt,
             }).ToArray());
         });
+        JournalModel.Configure(modelBuilder);
     }
 }

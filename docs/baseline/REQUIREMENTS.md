@@ -2,7 +2,7 @@
 
 Source: PRD v1.0, 26 October 2026, compared with `prototype/src/domain.ts`, `prototype/src/domain.test.ts`, `prototype/src/App.tsx` and `prototype/tests/journeys.spec.ts`.
 
-OPS, API, NFR and COM identifiers are assigned by this baseline so unnumbered P0 items in PRD §§6.10, 7, 11 and 13 have owners. They are not printed IDs in the PRD. Verification evidence is pending for every row. Slice 1 produced this matrix and did not run product tests.
+OPS, API, NFR and COM identifiers are assigned by this baseline so unnumbered P0 items in PRD §§6.10, 7, 11 and 13 have owners. They are not printed IDs in the PRD. Slice 1 produced this matrix and did not run product tests. Slice 3 records database evidence on the journal rows below. Every other row remains pending.
 
 Prototype unit tests and browser journeys are sandbox evidence only. They do not close a production acceptance test.
 
@@ -107,7 +107,7 @@ Prototype unit tests and browser journeys are sandbox evidence only. They do not
 - **Prototype evidence:** Domain tests for partial-plus-hold, late transfer, wrong contract, duplicate replay, and overpayment flags in `simulate`.
 - **Production gap:** Scenarios mutate one intent. Duplicate handling is not keyed by log identity. Partial credit uses integer division.
 - **Slice:** 10; journal in 3
-- **Verification evidence:** Pending. AT-005, AT-006 and AT-007.
+- **Verification evidence:** Slice 3 retains an observed minor-unit amount and rejects a second recognition for one chain observation. Allocation workflows and AT-005, AT-006, and AT-007 remain slice 10.
 
 ### PAY-006
 
@@ -201,7 +201,7 @@ Prototype unit tests and browser journeys are sandbox evidence only. They do not
 - **Prototype evidence:** `routeEvidence` and `policy` are copied onto the intent. AT-014 unit test edits providers afterwards.
 - **Production gap:** The copy lives in editable browser storage. Policy id is a constant.
 - **Slice:** 9; storage in 3
-- **Verification evidence:** Pending. AT-014.
+- **Verification evidence:** Slice 3 stores each routing decision as an immutable row with its policy version and input snapshot. The historical-edit scenario AT-014 remains slice 9.
 
 ### RTE-004
 
@@ -351,7 +351,7 @@ Prototype unit tests and browser journeys are sandbox evidence only. They do not
 - **Prototype evidence:** Domain test expects `detected`, hold, underpayment and `settlement: pending` together. Detail screen shows separate badges.
 - **Production gap:** The distinction is local state. A simulated “record statement” action can still mark settlement.
 - **Slice:** 13; model in 3; UI in 15
-- **Verification evidence:** Pending. Projection tests in slices 3 and 13.
+- **Verification evidence:** Slice 3 stores settlement posture separately from acceptance and keeps a mismatch there while acceptance stays succeeded. Statement matching remains slice 13.
 
 ### SET-002
 
@@ -378,7 +378,7 @@ Prototype unit tests and browser journeys are sandbox evidence only. They do not
 - **Prototype evidence:** Correction test asserts the mismatch title is still present. Reorg keeps prior event objects by appending.
 - **Production gap:** Settlement and confirmation fields on the same intent are still overwritten. Database permissions do not exist.
 - **Slice:** 3; statement corrections in 13
-- **Verification evidence:** Pending. Compensating-event tests in slice 3.
+- **Verification evidence:** Slice 3 database tests append a compensating financial event, leave the original amount in place, and rebuild the projection from retained rows. Statement-import corrections remain slice 13.
 
 ### SET-005
 
@@ -548,7 +548,7 @@ These rows track PRD §6.10. The prototype already renders the corresponding scr
 - **Prototype evidence:** Audit timeline appends titles. Prototype docs say browser storage is user-editable.
 - **Production gap:** No append-only database permissions.
 - **Slice:** 3; denied-access audit in 4
-- **Verification evidence:** Pending. Permission tests in slice 3.
+- **Verification evidence:** Slice 3 grants and triggers reject routine updates and deletes of financial events, observations, routing decisions, compliance decisions, audit events, and webhook history. Denied-access audit remains slice 4.
 
 ### NFR-005
 

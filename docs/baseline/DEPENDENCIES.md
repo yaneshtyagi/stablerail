@@ -53,7 +53,7 @@ These are selected so later slices do not invent them again. External gates abov
 | Cache | Redis 8.10.3, non-authoritative | PRD §9. Image pin `redis:8.10.3` |
 | Queue | Amazon SQS standard queue plus the ElasticMQ 1.7.1 emulator. Outbox remains the authority | ADR-005. Names and settings are in `code/src/BuildingBlocks/Queue/DurableQueue.cs` |
 | Routing tie-break | Merchant priority, then provider priority, then provider ID, all ascending | ADR-009 |
-| Money | Decimal strings on the API; integer minor units and an explicit scale in the database | ADR-004 and the state machine |
+| Money | Decimal strings on the API. Minor units are canonical digit strings with a generated `numeric(38,0)` value and an explicit scale from 0 through 18. Quoted fiat is a separate amount. The routine database login is `stablerail_app`, created without a password by the migration; local scripts set the development password. Production must set its own login password | ADR-004 and the state machine |
 | Idempotency retention | Same lifetime as the financial evidence | State machine |
 | Billing engine | Not in the MVP | TEN-005 is P1. Usage seam only |
 | SSO | Not in the MVP | TEN-006 is P2. MFA is in the MVP |
